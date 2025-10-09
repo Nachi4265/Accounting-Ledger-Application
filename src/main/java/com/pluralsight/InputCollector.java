@@ -12,8 +12,8 @@ public class InputCollector {
     }
 
     public static char promptForChar(String prompt){
-        System.out.println(prompt + ": ");
-        return scanner.next().charAt(0);
+        System.out.print(prompt + ": ");
+        return scanner.next().toUpperCase().charAt(0);
     }
 
     public static float promptForFloat(String prompt){
