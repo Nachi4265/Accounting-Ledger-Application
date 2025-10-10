@@ -1,11 +1,13 @@
 package com.pluralsight;
 
 public class Main {
+
+    //APPLICATION START-UP
     public static void main(String[] args) {
 
         //APPLICATION START UP!
         String appStartUp = """
-         -------LEDGER.APP-------
+         --------LEDGER.APP--------
          Welcome to the Ledger app!
          """;
 
@@ -14,7 +16,7 @@ public class Main {
         String startCommand;
         startCommand = InputCollector.promptForString("Enter 'Start' to load Application");
         System.out.println();
-        if (startCommand.equals("start")){
+        if (startCommand.equalsIgnoreCase("start")){
             homeMenu();
         }
     }
@@ -33,8 +35,7 @@ public class Main {
           X- Exit
           ----------------------
          """;
-        //boolean homeMenuOpen;
-        //while (true ) will forever be true because we are diving into other menus
+
         while(true){
             System.out.println(mainMenu);
 
@@ -64,9 +65,13 @@ public class Main {
 
     //MAIN MENU OPTIONS
     private static void addDeposit() {
+        System.out.println("ADD DEPOSIT");
+        System.out.println();
     }
 
     private static void addDebitInfo() {
+        System.out.println("DEBIT-INFO");
+        System.out.println();
     }
 
     private static void ledgerMenu() {
@@ -101,7 +106,10 @@ public class Main {
                     paymentsMade();
                     break;
                 case'R':
-                    reportsMenu();
+                    boolean goToMain = reportsMenu();
+                    if(goToMain){
+                        return;
+                    }
                     break;
                 case 'H':
                     return;
@@ -109,6 +117,9 @@ public class Main {
                     System.out.println("Invalid Input! Please choose valid command.");
                     break;
             }
+
+
+
         }
 
     }
@@ -132,7 +143,7 @@ public class Main {
         //todo display ONlY payments
     }
 
-    private static void reportsMenu() {
+    private static boolean reportsMenu() {
 
         String mainMenu = """
          -----LEDGER.APP------
@@ -171,9 +182,9 @@ public class Main {
                     searchByVendor();
                     break;
                 case '0':
-                    return;
+                    return false;
                 case 'H':
-                    homeMenu();
+                    return true;
                 default:
                     System.out.println("Invalid Input! Please choose valid command.");
                     break;
@@ -181,7 +192,8 @@ public class Main {
             }
         }
     }
-    //todo fix going to the home menu
+
+
 
 
 
