@@ -33,7 +33,8 @@ public class Main {
           X- Exit
           ----------------------
          """;
-
+        //boolean homeMenuOpen;
+        //while (true ) will forever be true because we are diving into other menus
         while(true){
             System.out.println(mainMenu);
 
@@ -51,13 +52,12 @@ public class Main {
                     ledgerMenu();
                     break;
                 case'X':
-                    return;
+                    System.exit(0);
                 default:
                     System.out.println("Invalid Input! Please choose valid command.");
                     break;
             }
         }
-
     }
 
 
