@@ -40,9 +40,6 @@ public class Main {
                     break;
             }
         }
-
-
-
     }
 
 
@@ -135,44 +132,38 @@ public class Main {
 
         while(true){
             System.out.println(mainMenu);
-
-
-            int command;
-            command = InputCollector.promptForInt("Enter a number command");
+            char command;
+            command = InputCollector.promptForChar("Enter a number command");
 
             switch(command){
-                case 1:
+                case '1':
                     monthToDate();
                     break;
-                case 2:
+                case '2':
                     previousMonth();
                     break;
-                case 3:
+                case '3':
                     yearToDate();
                     break;
-                case 4:
+                case '4':
                     previousYear();
                     break;
-                case 5:
+                case '5':
                     searchByVendor();
                     break;
-                case 0 :
+                case '0':
+                    return;
+                case 'H':
                     return;
                 default:
                     System.out.println("Invalid Input! Please choose valid command.");
                     break;
-            }
-
-            char command2;
-            command2 = InputCollector.promptForChar("Enter command here to return home");
-            switch (command2){
-                case 'H':
-                    return;
 
             }
         }
-
     }
+    //todo fix going to the home menu
+
 
 
 

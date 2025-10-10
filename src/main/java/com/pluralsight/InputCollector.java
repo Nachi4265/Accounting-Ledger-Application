@@ -65,5 +65,4 @@ public class InputCollector {
         return result;
     }
 
-
 }
