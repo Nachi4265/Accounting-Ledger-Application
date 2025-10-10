@@ -3,11 +3,28 @@ package com.pluralsight;
 public class Main {
     public static void main(String[] args) {
 
-        //HOME SCREEN!
-        String mainMenu = """
+        //APPLICATION START UP!
+        String appStartUp = """
          -------LEDGER.APP-------
          Welcome to the Ledger app!
-         
+         """;
+
+        System.out.println(appStartUp);
+
+        String startCommand;
+        startCommand = InputCollector.promptForString("Enter 'Start' to load Application");
+        System.out.println();
+        if (startCommand.equals("start")){
+            homeMenu();
+        }
+    }
+
+
+
+    //HOME SCREEN
+    private static void homeMenu() {
+
+        String mainMenu = """
          -------HOME MENU--------
          -Please choose and option-
           D- Add Deposit
@@ -40,6 +57,7 @@ public class Main {
                     break;
             }
         }
+
     }
 
 
@@ -94,6 +112,7 @@ public class Main {
         }
 
     }
+
 
 
 
@@ -154,7 +173,7 @@ public class Main {
                 case '0':
                     return;
                 case 'H':
-                    return;
+                    homeMenu();
                 default:
                     System.out.println("Invalid Input! Please choose valid command.");
                     break;
