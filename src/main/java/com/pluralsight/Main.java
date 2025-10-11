@@ -92,7 +92,7 @@ public class Main {
         amount = InputCollector.promptFoDouble("Enter the amount");
 
         transaction newTransaction = new transaction(date,time,description,vendor,amount);
-        transaction.add(newTransaction);
+        ledger.add(newTransaction);
 
     }
 
