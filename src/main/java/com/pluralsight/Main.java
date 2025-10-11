@@ -1,5 +1,11 @@
 package com.pluralsight;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+
 public class Main {
 
     //APPLICATION START-UP
@@ -67,6 +73,22 @@ public class Main {
     private static void addDeposit() {
         System.out.println("ADD DEPOSIT");
         System.out.println();
+
+        //Initialize my variables so they can be changed and used.
+        LocalDate date ;
+        LocalTime time ;
+        String description = "";
+        String vendor = "";
+        double amount = 0.00;
+
+        date = InputCollector.promptForLocalDate("Enter the current date");
+        time = InputCollector.promptForLocalTime("Enter the current time");
+        description = InputCollector.promptForString("Enter description");
+        vendor = InputCollector.promptForString("Enter vendor");
+        amount = InputCollector.promptFoDouble("Enter the amount");
+
+        transaction newTransaction = new transaction(date,time,description,vendor,amount);
+//        transaction.add(newtransaction); come back to this after being able to display all data in ledger.
     }
 
     private static void addDebitInfo() {
@@ -81,7 +103,7 @@ public class Main {
          
          ------Ledger Menu------
          -Please choose and option-
-          A- Add Deposit
+          A- All entries
           D- Deposits
           P- Payments
           R- Reports
@@ -128,9 +150,42 @@ public class Main {
 
 
     //LEDGER MENU
-    private static void displayAllEntries() {
-        System.out.println("Here are all current entire");
+    private static ArrayList<transaction> displayAllEntries() {
+        System.out.println("Here are all current entires");
+        System.out.println("----------------------------");
         //todo have this display all entries
+        ArrayList<transaction>ledger = new ArrayList<>();
+        try{
+            //Made a FileReader to grab the transactions from my file!
+            //Passed it into a BufferedReader so it saves time when reading ( Not that well see it )
+            FileReader fileReader = new FileReader(" transactions.csv");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String readFileLine;
+
+            //reads first line of file before entering while loop.
+            bufferedReader.readLine();
+
+            while((readFileLine = bufferedReader.readLine())!=null){
+                //We need to split the transaction into pieces
+                String[]transactionParts = readFileLine.split("\\|");
+                LocalDate transactionDate = LocalDate.parse(transactionParts[0]);
+                LocalTime transactionTime = LocalTime.parse(transactionParts[1]);
+                String transactionDescription = transactionParts[2];
+                String transactionVendor = transactionParts[3];
+                double transactionPrice = Double.parseDouble(transactionParts[4]);
+
+                transaction t = new transaction(transactionDate,transactionTime,transactionDescription,transactionVendor,transactionPrice);
+                ledger.add(t);
+            }
+            for (transaction t : ledger){
+                System.out.println(t);
+            }
+        }
+        catch (Exception e){
+            System.out.println("Could not read from Ledger.");
+//            e.printStackTrace();
+        }
+        return ledger;
     }
 
     private static void displayDeposits() {

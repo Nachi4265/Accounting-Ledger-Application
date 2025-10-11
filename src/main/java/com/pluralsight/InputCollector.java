@@ -1,4 +1,6 @@
 package com.pluralsight;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class InputCollector {
@@ -65,4 +67,41 @@ public class InputCollector {
         return result;
     }
 
+    public  static LocalDate promptForLocalDate(String prompt){
+        System.out.print(prompt + ": ");
+        LocalDate result = LocalDate.now();
+        scanner.nextLine();
+        return result;
+
+    }
+
+    public  static LocalTime promptForLocalTime(String prompt){
+        System.out.print(prompt + ": ");
+        LocalTime result = LocalTime.now();
+        scanner.nextLine();
+        return result;
+
+    }
+
+    public static double promptFoDouble(String prompt){
+
+        boolean isDouble = false;
+        double result = 0;
+
+        do{
+            try{
+                System.out.print(prompt + ": ");
+                result = scanner.nextDouble();
+                scanner.nextLine();
+                isDouble = true;
+
+            }catch(Exception e){
+                scanner.nextLine();
+                System.out.print("please enter a number with decimal");
+            }
+        }while (!isDouble);
+
+        return result;
+
+    }
 }
