@@ -5,13 +5,17 @@ import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
+
+    public static ArrayList<transaction> ledger = displayAllEntries();
 
     //APPLICATION START-UP
     public static void main(String[] args) {
 
         //APPLICATION START UP!
+
         String appStartUp = """
          --------LEDGER.APP--------
          Welcome to the Ledger app!
@@ -81,14 +85,15 @@ public class Main {
         String vendor = "";
         double amount = 0.00;
 
-        date = InputCollector.promptForLocalDate("Enter the current date");
-        time = InputCollector.promptForLocalTime("Enter the current time");
+        date = InputCollector.promptForLocalDate("Enter the current date (YYYY-mm-dd)");
+        time = LocalTime.now();
         description = InputCollector.promptForString("Enter description");
         vendor = InputCollector.promptForString("Enter vendor");
         amount = InputCollector.promptFoDouble("Enter the amount");
 
         transaction newTransaction = new transaction(date,time,description,vendor,amount);
-//        transaction.add(newtransaction); come back to this after being able to display all data in ledger.
+        transaction.add(newTransaction);
+
     }
 
     private static void addDebitInfo() {
@@ -186,6 +191,7 @@ public class Main {
 //            e.printStackTrace();
         }
         return ledger;
+
     }
 
     private static void displayDeposits() {
