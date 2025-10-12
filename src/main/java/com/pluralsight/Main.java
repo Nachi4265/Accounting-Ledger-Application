@@ -24,7 +24,6 @@ public class Main {
 
         String startCommand;
         startCommand = InputCollector.promptForString("Enter 'Start' to load Application");
-        System.out.println();
         if (startCommand.equalsIgnoreCase("start")){
             homeMenu();
         }
@@ -37,7 +36,7 @@ public class Main {
 
         String mainMenu = """
          -------HOME MENU--------
-         -Please choose and option-
+         -Please choose an option-
           D- Add Deposit
           P- Make Payment
           L- Ledger
@@ -74,39 +73,43 @@ public class Main {
 
     //MAIN MENU OPTIONS
     private static void addDeposit() {
-        System.out.println("ADD DEPOSIT");
-        System.out.println();
 
         //Initialize my variables so they can be changed and used.
-        String stringDate ;
+        String stringDate = "";
         LocalTime time ;
         String description = "";
         String vendor = "";
         double amount = 0.00;
 
-
-        System.out.println();
-
-        stringDate = InputCollector.promptForString("Enter the date (YYYY-MM-DD)");
-        //todo fix the issue of the Prompts being next to each other.
-        description = InputCollector.promptForString("Enter description");
-
-        vendor = InputCollector.promptForString("Enter vendor");
-
-        amount = InputCollector.promptFoDouble("Enter the amount");
         time = LocalTime.now();
 
-        LocalDate date = LocalDate.parse(stringDate);
 
-        transaction newTransaction = new transaction(stringDate,time,description,vendor,amount);
-        ledger.add(newTransaction);
+        try{
+            String dateString = InputCollector.promptForString("Enter the current date (YYYY-MM-DD)");
+            LocalDate date = LocalDate.parse(dateString);
+            description = InputCollector.promptForString("Enter the description");
+            vendor = InputCollector.promptForString("Enter the vendor");
+            amount = InputCollector.promptForDouble("Enter the amount");
 
-    }
+//            transaction newTransaction = new transaction(date,time,description,vendor,amount);
+
+        }
+        catch(Exception e ){
+            System.out.println("Invalid entry!");
+        }
+
+
+
+
+
+
+
+    } //todo COME BACK TO THIS LATER
 
     private static void addDebitInfo() {
         System.out.println("DEBIT-INFO");
         System.out.println();
-    }
+    }//todo same as above but its payment
 
     private static void ledgerMenu() {
 
@@ -203,12 +206,24 @@ public class Main {
 
     private static void displayDeposits() {
         System.out.println("Here are all of the current deposits");
+        System.out.println("------------------------------------");
         //todo display ONLY deposits
-    }
+        for (transaction t : ledger){
+            if ( t.getAmount() > 0){
+                System.out.println(t);
+            }
+        }
+
+    }//todo load ledger before displaying deposits
 
     private static void paymentsMade() {
         System.out.println("Here are all of the current payments");
         //todo display ONlY payments
+        for (transaction t : ledger){
+            if ( t.getAmount() < 0){
+                System.out.println(t);
+            }
+        }
     }
 
     private static boolean reportsMenu() {
@@ -260,6 +275,8 @@ public class Main {
             }
         }
     }
+
+    
 
 
 

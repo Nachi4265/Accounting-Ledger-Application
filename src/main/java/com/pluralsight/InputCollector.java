@@ -10,7 +10,7 @@ public class InputCollector {
 
     public static String promptForString(String prompt){
         System.out.print(prompt + ": ");
-        return scanner.nextLine().trim();
+        return scanner.nextLine();
     }
 
     public static char promptForChar(String prompt){
@@ -67,8 +67,7 @@ public class InputCollector {
         return result;
     }
 
-    public  static LocalDate promptForDate(String prompt){
-
+    public static LocalDate promptForDate(String prompt){
         while (true){
             try{
                 System.out.print(prompt + ": ");
@@ -83,15 +82,9 @@ public class InputCollector {
 
     }
 
-    public  static LocalTime promptForLocalTime(String prompt){
-        System.out.print(prompt + ": ");
-        LocalTime result = LocalTime.now();
-        scanner.nextLine();
-        return result;
 
-    }
 
-    public static double promptFoDouble(String prompt){
+    public static double promptForDouble(String prompt){
 
         boolean isDouble = false;
         double result = 0;
