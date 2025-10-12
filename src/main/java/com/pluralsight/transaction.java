@@ -6,19 +6,28 @@ import java.time.LocalTime;
 public class transaction {
 
 
-    LocalDate date;
+    String date;
     LocalTime time;
     String description;
     String vendor;
     double amount;
 
 
+    public transaction(String date, LocalTime time, String description, String vendor, double amount) {
+        this.date = date;
+        this.time = time;
+        this.description = description;
+        this.vendor = vendor;
+        this.amount = amount;
+    }
 
-    public LocalDate getDate() {
+
+
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -55,13 +64,9 @@ public class transaction {
     }
 
 
-    public transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
-        this.date = date;
-        this.time = time;
-        this.description = description;
-        this.vendor = vendor;
-        this.amount = amount;
-    }
+
+
+
 
     @Override
     public String toString(){

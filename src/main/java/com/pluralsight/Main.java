@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 
 public class Main {
-
-    public static ArrayList<transaction> ledger = displayAllEntries();
+   public static ArrayList<transaction> ledger = new ArrayList<>();
 
     //APPLICATION START-UP
     public static void main(String[] args) {
@@ -79,19 +78,27 @@ public class Main {
         System.out.println();
 
         //Initialize my variables so they can be changed and used.
-        LocalDate date ;
+        String stringDate ;
         LocalTime time ;
         String description = "";
         String vendor = "";
         double amount = 0.00;
 
-        date = InputCollector.promptForLocalDate("Enter the current date (YYYY-mm-dd)");
-        time = LocalTime.now();
-        description = InputCollector.promptForString("Enter description");
-        vendor = InputCollector.promptForString("Enter vendor");
-        amount = InputCollector.promptFoDouble("Enter the amount");
 
-        transaction newTransaction = new transaction(date,time,description,vendor,amount);
+        System.out.println();
+
+        stringDate = InputCollector.promptForString("Enter the date (YYYY-MM-DD)");
+        //todo fix the issue of the Prompts being next to each other.
+        description = InputCollector.promptForString("Enter description");
+
+        vendor = InputCollector.promptForString("Enter vendor");
+
+        amount = InputCollector.promptFoDouble("Enter the amount");
+        time = LocalTime.now();
+
+        LocalDate date = LocalDate.parse(stringDate);
+
+        transaction newTransaction = new transaction(stringDate,time,description,vendor,amount);
         ledger.add(newTransaction);
 
     }
@@ -115,6 +122,7 @@ public class Main {
           H- Home
           ----------------------
          """;
+
 
         while(true){
             System.out.println(ledgerMenu);
@@ -156,10 +164,9 @@ public class Main {
 
     //LEDGER MENU
     private static ArrayList<transaction> displayAllEntries() {
-        System.out.println("Here are all current entires");
+        System.out.println("Here are all current entire");
         System.out.println("----------------------------");
         //todo have this display all entries
-        ArrayList<transaction>ledger = new ArrayList<>();
         try{
             //Made a FileReader to grab the transactions from my file!
             //Passed it into a BufferedReader so it saves time when reading ( Not that well see it )
@@ -173,7 +180,7 @@ public class Main {
             while((readFileLine = bufferedReader.readLine())!=null){
                 //We need to split the transaction into pieces
                 String[]transactionParts = readFileLine.split("\\|");
-                LocalDate transactionDate = LocalDate.parse(transactionParts[0]);
+                String transactionDate = transactionParts[0];
                 LocalTime transactionTime = LocalTime.parse(transactionParts[1]);
                 String transactionDescription = transactionParts[2];
                 String transactionVendor = transactionParts[3];

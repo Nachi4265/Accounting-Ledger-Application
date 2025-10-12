@@ -67,11 +67,19 @@ public class InputCollector {
         return result;
     }
 
-    public  static LocalDate promptForLocalDate(String prompt){
-        System.out.print(prompt + ": ");
-        LocalDate result = LocalDate.now();
-        scanner.nextLine();
-        return result;
+    public  static LocalDate promptForDate(String prompt){
+
+        while (true){
+            try{
+                System.out.print(prompt + ": ");
+                String stringDate = scanner.nextLine();
+                return LocalDate.parse(stringDate);
+            }
+            catch(Exception e){
+                System.out.println("Invalid entry! Please enter date (YYYY-MM-DD)");
+            }
+
+        }
 
     }
 
