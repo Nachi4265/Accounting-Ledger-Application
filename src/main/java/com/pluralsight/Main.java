@@ -91,11 +91,16 @@ public class Main {
             vendor = InputCollector.promptForString("Enter the vendor");
             amount = InputCollector.promptForDouble("Enter the amount");
 
-//            transaction newTransaction = new transaction(date,time,description,vendor,amount);
+            transaction newTransaction = new transaction(dateString,time,description,vendor,amount);
 
+            ledger.add(newTransaction);
+
+            System.out.println("Deposit successful!");
+            System.out.println();
         }
         catch(Exception e ){
             System.out.println("Invalid entry!");
+            e.printStackTrace();
         }
 
 
@@ -276,7 +281,7 @@ public class Main {
         }
     }
 
-    
+
 
 
 
@@ -286,8 +291,17 @@ public class Main {
     //REPORTS MENU
     private static void monthToDate() {
         System.out.println("Reports from the past month");
-        //todo
+        for(transaction t : ledger){
+                LocalDate transactionDate = t.getDate();
+                LocalDate todayDate = LocalDate.now();
+                if(transactionDate.getYear()==todayDate.getYear()&&transactionDate.getMonth()==todayDate.getMonth()){
+                    System.out.print(t);
+                }
+            }
+        }
     }
+        //The idea is to look through my ledger and fine any month that matches the current money using LocalDate.now
+
 
     private static void previousMonth() {
         System.out.println("Reports from Previous Month");

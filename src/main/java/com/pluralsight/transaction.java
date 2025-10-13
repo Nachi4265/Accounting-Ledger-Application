@@ -6,7 +6,7 @@ import java.time.LocalTime;
 public class transaction {
 
 
-    String date;
+    LocalDate date;
     LocalTime time;
     String description;
     String vendor;
@@ -14,7 +14,7 @@ public class transaction {
 
 
     public transaction(String date, LocalTime time, String description, String vendor, double amount) {
-        this.date = date;
+        this.date = LocalDate.parse(date);
         this.time = time;
         this.description = description;
         this.vendor = vendor;
@@ -23,12 +23,12 @@ public class transaction {
 
 
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.date = LocalDate.parse(date);
     }
 
     public LocalTime getTime() {
