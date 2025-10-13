@@ -10,7 +10,9 @@ public class InputCollector {
 
     public static String promptForString(String prompt){
         System.out.print(prompt + ": ");
-        return scanner.nextLine();
+        String input = scanner.nextLine().trim();
+        System.out.println();  // Add this for spacing
+        return input;
     }
 
     public static char promptForChar(String prompt){

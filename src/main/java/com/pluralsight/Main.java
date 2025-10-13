@@ -332,8 +332,20 @@ public class Main {
     }
 
     private static void searchByVendor() {
-        System.out.println("Searching by Vendor");
-        //todo
+        System.out.println("Search by Vendor");
+        System.out.println("----------------");
+
+        //Ask for which vendor they want to search for.
+       String vendorSearchedFor = InputCollector.promptForString("Enter vendor");
+
+
+        //Look thorugh my Ledger
+        for (transaction t : ledger){
+            if(t.getVendor().equalsIgnoreCase(vendorSearchedFor)){
+                System.out.println(t);
+            }
+        }
+
     }
 
 
