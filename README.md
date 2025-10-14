@@ -20,6 +20,6 @@ I loved woking with Html and Css so I figured I'd get an esay win first and work
 ( it also makes it easier (in my opinion) to test the application!)
 
 <img width="200" height="200" alt="Screenshot 2025-10-11 180347" src="https://github.com/user-attachments/assets/8a2c0cc0-9116-4f2f-967e-7b6165d6beb7" />
-<img width="470" height="353" alt="Screenshot 2025-10-11 180424" src="https://github.com/user-attachments/assets/f732deff-805f-4775-8cb9-027b001ad2bd" />
-<img width="451" height="388" alt="Screenshot 2025-10-11 180438" src="https://github.com/user-attachments/assets/35307916-8a2b-48dd-8e51-5e12a6c78fab" />
-<img width="460" height="477" alt="Screenshot 2025-10-11 180449" src="https://github.com/user-attachments/assets/e27af71c-b88b-47b8-a95d-ce7a65b8e20a" />
+<img width="200" height="200" alt="Screenshot 2025-10-11 180424" src="https://github.com/user-attachments/assets/f732deff-805f-4775-8cb9-027b001ad2bd" />
+<img width="200" height="200" alt="Screenshot 2025-10-11 180438" src="https://github.com/user-attachments/assets/35307916-8a2b-48dd-8e51-5e12a6c78fab" />
+<img width="200" height="200" alt="Screenshot 2025-10-11 180449" src="https://github.com/user-attachments/assets/e27af71c-b88b-47b8-a95d-ce7a65b8e20a" />
