@@ -1,13 +1,12 @@
 package com.pluralsight;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Year;
 import java.time.YearMonth;
 import java.util.ArrayList;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Objects;
 
 public class Main {
     public static ArrayList<transaction> ledger = new ArrayList<>();
@@ -30,6 +29,8 @@ public class Main {
             homeMenu();
         }
     }
+
+
 
 
     //HOME SCREEN
@@ -56,7 +57,7 @@ public class Main {
                     addDeposit();
                     break;
                 case 'P':
-                    addDebitInfo();
+                    addPayment();
                     break;
                 case 'L':
                     ledgerMenu();
@@ -71,43 +72,68 @@ public class Main {
     }
 
 
+
+
+
     //MAIN MENU OPTIONS
-    private static void addDeposit() {
+    public static void addDeposit() {
 
-        //Initialize my variables so they can be changed and used.
-        String stringDate = "";
-        LocalTime time;
-        String description = "";
-        String vendor = "";
-        double amount = 0.00;
+        //Create transaction -> Add to Ledger -> Write that specific transaction to file.
 
-        time = LocalTime.now();
+        //variables that will hold the user input
 
-
-        try {
-            String dateString = InputCollector.promptForString("Enter the current date (YYYY-MM-DD)");
-            LocalDate date = LocalDate.parse(dateString);
-            description = InputCollector.promptForString("Enter the description");
-            vendor = InputCollector.promptForString("Enter the vendor");
-            amount = InputCollector.promptForDouble("Enter the amount");
-
-            transaction newTransaction = new transaction(dateString, time, description, vendor, amount);
-
-            ledger.add(newTransaction);
-
-            System.out.println("Deposit successful!");
-            System.out.println();
-        } catch (Exception e) {
-            System.out.println("Invalid entry!");
-            e.printStackTrace();
-        }
+        String stringDate;
+        LocalTime time = LocalTime.now();
+        String description;
+        String vendor;
+        double amount;
 
 
-    } //todo COME BACK TO THIS LATER
+        //Prompt for user information for transaction
+        stringDate = InputCollector.promptForString("Enter the date(YYYY-mm-dd)");
+        description = InputCollector.promptForString("Enter Item Description");
+        vendor = InputCollector.promptForString("Enter Vendor");
+        amount = InputCollector.promptForDouble("Enter amount");
 
-    private static void addDebitInfo() {
-        System.out.println("DEBIT-INFO");
+
+        //create the transaction using constructor.
+        transaction newTransaction = new transaction(stringDate,time,description,vendor,amount);
+
+        //add that transaction to my ledger
+        ledger.add(newTransaction);
+
+        //add our converted
+        addTransactionToLedger( newTransaction);
+
+
+    }
+
+    private static void addPayment() {
+        System.out.println("PAYMENT-INFO");
         System.out.println();
+
+        String stringDate;
+        LocalTime time = LocalTime.now();
+        String description;
+        String vendor;
+        double amount;
+
+
+        //Prompt for user information for transaction
+        stringDate = InputCollector.promptForString("Enter the date(YYYY-mm-dd)");
+        description = InputCollector.promptForString("Enter Item Description");
+        vendor = InputCollector.promptForString("Enter Vendor");
+        amount = InputCollector.promptForDouble("Enter amount");
+
+
+        //create the transaction using constructor.
+        transaction newTransaction = new transaction(stringDate,time,description,vendor,amount);
+
+        //add that transaction to my ledger
+        ledger.add(newTransaction);
+
+        //add our converted
+        addTransactionToLedger( newTransaction);
     }//todo same as above but its payment
 
     private static void ledgerMenu() {
@@ -160,25 +186,56 @@ public class Main {
 
     }
 
+    private static void addTransactionToLedger(transaction newTransaction){
+
+
+        try{
+            //Use the file writer to choose where to write transaction.csv file
+            FileWriter fileWriter = new FileWriter("data/transactions.csv",true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            //pass the new Transaction that has been converted to a string (.toString) in my writer.
+            bufferedWriter.write("\n"+ newTransaction.toString());
+
+            //confirmation transaction was added
+            System.out.println("transaction added");
+            System.out.println();
+
+
+            bufferedWriter.close();
+            fileWriter.close();
+        }
+        catch(Exception e){
+            System.out.println("Could not add transaction");
+//            e.printStackTrace();
+        }
+    }
+
+
+
+
 
     //LEDGER MENU
-    private static ArrayList<transaction> displayAllEntries() {
+    private static void displayAllEntries() {
         System.out.println("Here are all current entire");
         System.out.println("----------------------------");
-        //todo have this display all entries
+
         try {
             //Made a FileReader to grab the transactions from my file!
             //Passed it into a BufferedReader so it saves time when reading ( Not that well see it )
-            FileReader fileReader = new FileReader(" transactions.csv");
+            FileReader fileReader = new FileReader("data/transactions.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String readFileLine;
 
             //reads first line of file before entering while loop.
             bufferedReader.readLine();
 
+
             while ((readFileLine = bufferedReader.readLine()) != null) {
                 //We need to split the transaction into pieces
                 String[] transactionParts = readFileLine.split("\\|");
+
+
                 String transactionDate = transactionParts[0];
                 LocalTime transactionTime = LocalTime.parse(transactionParts[1]);
                 String transactionDescription = transactionParts[2];
@@ -191,11 +248,15 @@ public class Main {
             for (transaction t : ledger) {
                 System.out.println(t);
             }
+
+            bufferedReader.close();
+            fileReader.close();
+
         } catch (Exception e) {
             System.out.println("Could not read from Ledger.");
 //            e.printStackTrace();
         }
-        return ledger;
+
 
     }
 
@@ -223,7 +284,8 @@ public class Main {
 
     private static boolean reportsMenu() {
 
-        String mainMenu = """
+        String reportsMenu = """
+                
                 -----LEDGER.APP------
                 
                 ----REPORTS MENU----
@@ -239,7 +301,7 @@ public class Main {
                 """;
 
         while (true) {
-            System.out.println(mainMenu);
+            System.out.println(reportsMenu);
             char command;
             command = InputCollector.promptForChar("Enter a number command");
 
@@ -272,6 +334,9 @@ public class Main {
     }
 
 
+
+
+
     //REPORTS MENU
     private static void monthToDate() {
         System.out.println("Reports from the past month");
@@ -284,9 +349,6 @@ public class Main {
         }
         System.out.println();
     }
-
-    //The idea is to look through my ledger and fine any month that matches the current money using LocalDate.now
-
 
     private static void previousMonth() {
         System.out.println("Reports from Previous Month");
@@ -333,20 +395,17 @@ public class Main {
 
     private static void searchByVendor() {
         System.out.println("Search by Vendor");
-        System.out.println("----------------");
 
         //Ask for which vendor they want to search for.
-       String vendorSearchedFor = InputCollector.promptForString("Enter vendor");
+       String vendorSearchedFor = InputCollector.promptForString("Enter vendor name");
 
-
-        //Look thorugh my Ledger
+        //Look through my Ledger
         for (transaction t : ledger){
-            if(t.getVendor().equalsIgnoreCase(vendorSearchedFor)){
+            if(Objects.equals(t.getVendor(), vendorSearchedFor)){
                 System.out.println(t);
             }
         }
-
-    }
+    }//add ignore case
 
 
 }

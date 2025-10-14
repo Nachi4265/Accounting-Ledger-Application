@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class transaction {
 
@@ -64,19 +65,10 @@ public class transaction {
     }
 
 
-
-
-
-
     @Override
     public String toString(){
-        return date + " | " + time + " | " + description + " | " + vendor + " | " + amount;
+        //format the time so that we are rid of extra seconds on the end.
+       DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        return date + " | " + time.format(timeFormatter) + " | " + description + " | " + vendor + " | " + amount;
     }
-
-
-
-
-
-
-
 }

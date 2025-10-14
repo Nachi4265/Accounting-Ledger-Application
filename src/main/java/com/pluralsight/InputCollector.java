@@ -17,7 +17,9 @@ public class InputCollector {
 
     public static char promptForChar(String prompt){
         System.out.print(prompt + ": ");
-        return scanner.next().toUpperCase().charAt(0);
+        char result = scanner.next().toUpperCase().charAt(0);
+        scanner.nextLine();
+        return result;
     }
 
     public static float promptForFloat(String prompt){
@@ -83,8 +85,6 @@ public class InputCollector {
         }
 
     }
-
-
 
     public static double promptForDouble(String prompt){
 
