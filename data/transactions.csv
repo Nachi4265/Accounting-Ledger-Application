@@ -1,73 +1,15 @@
-date|time|description|vendor|amount
-2020-01-10|09:30:00|Art supplies purchase|Blick Art Materials|-150.75
-2020-02-14|14:20:15|Commission payment received|Gallery NYC|2500.00
-2020-03-05|11:45:30|Canvas and paint set|Michaels|-89.99
-2020-04-18|16:10:00|Studio rent|Landlord|-1200.00
-2020-05-22|13:25:45|Print production|PrintNinja|-450.50
-2020-06-30|10:00:00|Artwork sold online|Etsy|875.00
-2020-07-12|15:35:20|Photography equipment|B&H Photo|-599.99
-2020-08-08|09:15:00|Commission invoice 5001|Client A|3000.00
-2020-09-20|12:50:30|Digital art software|Adobe|-54.99
-2020-10-15|14:20:00|Gallery exhibition fee|Local Gallery|-200.00
-2020-11-25|10:30:45|Artwork commission completed|Client B|1800.00
-2020-12-28|16:45:00|Year-end equipment purchase|Amazon|-375.00
-2021-01-14|11:20:15|Studio supplies restocking|Blick Art Materials|-225.50
-2021-02-10|13:40:00|Freelance design work|Design Client|1200.00
-2021-03-18|09:55:30|Frame materials|Frame USA|-180.00
-2021-04-22|15:10:45|Commission payment|Corporate Client|4500.00
-2021-05-30|14:25:00|Art show booth fee|Convention Center|-150.00
-2021-06-15|10:35:20|Royalty payment|Publisher|650.00
-2021-07-20|12:15:00|Professional development course|Online Academy|-299.99
+Date|Time|Description|Vendor|Amount
+2020-02-14|14:20:15|Commission payment received|Gallery NYC|2500.0
+2020-12-28|16:45:00|Year-end equipment purchase|Amazon|-375.0
+2021-04-22|15:10:45|Commission payment|Corporate Client|4500.0
 2021-08-12|16:50:30|Merchandise inventory|Print Shop|-525.75
-2021-09-05|11:30:00|Commission invoice 6001|Museum Client|2800.00
-2021-10-28|13:45:15|Art supplies|Jackson's Art|-310.00
-2021-11-16|09:20:00|Artwork licensing deal|Stock Photo Site|950.00
-2021-12-20|15:30:45|Year-end bonus|Business Account|1500.00
-2022-01-18|10:15:30|Studio rent|Landlord|-1200.00
-2022-02-25|14:40:00|Illustration project|Magazine|-450.00
-2022-03-12|11:55:20|Commission work completed|Private Collector|3200.00
-2022-04-08|16:20:45|Digital tablet purchase|Apple Store|-1299.99
-2022-05-22|13:35:00|Art exhibition|Gallery Soho|1100.00
-2022-06-30|09:10:15|Freelance graphic design|Creative Agency|2000.00
-2022-07-14|15:25:30|Framing supplies|Frame USA|-275.00
-2022-08-19|12:50:00|Commission invoice 7001|Corporate Art|5000.00
+2022-03-12|11:55:20|Commission work completed|Private Collector|3200.0
 2022-09-11|14:15:45|Photography workshop|Photo Institute|-399.99
-2022-10-25|10:40:20|Artwork print run|PrintNinja|-680.50
-2022-11-30|13:05:00|Holiday season sales|Online Store|1850.00
-2022-12-15|16:35:30|Christmas commission bonus|Client C|2200.00
-2023-01-20|11:25:15|Art materials|Blick Art Materials|-195.00
-2023-02-14|14:50:00|Commission project|Wedding Client|1600.00
-2023-03-18|09:35:45|Digital art tool upgrade|Creative Suite|-79.99
-2023-04-15|10:13:25|Ergonomic keyboard|Amazon|-89.50
-2023-04-15|11:15:00|Invoice 1001 paid|Joe|1500.00
-2023-05-22|15:20:30|Studio space upgrade rent|Landlord|-1500.00
-2023-06-10|13:45:00|Art commission completed|Corporate Client|4200.00
-2023-07-18|12:10:15|Exhibition sales|Art Fair|2300.00
-2023-08-25|16:30:45|Freelance illustration work|Book Publisher|1400.00
-2023-09-12|10:55:20|Canvas bulk order|Blick Art Materials|-450.75
-2023-10-20|14:15:00|Commission invoice 8001|Collector|3500.00
-2023-11-08|11:40:30|Holiday promotion sales|Website|950.00
-2023-12-28|15:25:15|Year-end portfolio refresh|Freelancer|-250.00
-2024-01-15|09:30:00|Monthly studio rent|Landlord|-1500.00
-2024-02-10|13:20:45|Commission work|Museum Client|5500.00
-2024-03-22|11:15:30|Art supplies restock|Jackson's Art|-320.00
-2024-04-18|16:45:00|Freelance design project|Marketing Agency|2100.00
-2024-05-30|14:10:15|Gallery exhibition fees|Contemporary Gallery|-300.00
-2024-06-14|10:35:20|Commission invoice 9001|Private Collector|3800.00
-2024-07-25|15:50:30|Photography equipment upgrade|B&H Photo|-749.99
-2024-08-12|12:25:00|Online course purchase|MasterClass|-199.99
-2024-09-20|13:40:45|Commission completed|Tech Company|4500.00
-2024-10-05|11:15:20|Artwork royalties|Licensing Agency|1250.00
-2024-11-18|14:55:00|Holiday season commission|Client D|2800.00
-2024-12-22|16:30:15|Year-end art sale|Online Store|1975.00
-2025-01-12|10:20:30|Studio rent|Landlord|-1500.00
-2025-02-08|14:35:45|Commission project|Wedding Client|1800.00
-2025-03-15|11:50:20|Digital art software renewal|Adobe|-54.99
-2025-04-22|15:15:00|Freelance illustration work|Publishing House|2200.00
-2025-05-10|13:40:30|Art materials bulk purchase|Blick Art Materials|-575.00
-2025-06-18|09:25:15|Commission invoice 10001|Corporate Client|6000.00
-2025-07-30|16:10:45|Exhibition space rental|Gallery Space|-400.00
-2025-08-14|12:35:00|Photography workshop|Photo Academy|-349.99
-2025-09-25|14:20:30|Merchandise sales|Online Store|2150.00
-2025-10-10|10:50:15|Commission work completed|Art Collector|4200.00
-
+2023-04-15|11:15:00|Invoice 1001 paid|Joe|1500.0
+2023-10-20|14:15:00|Commission invoice 8001|Collector|3500.0
+2024-02-10|13:20:45|Commission work|Museum Client|5500.0
+2024-12-22|16:30:15|Year-end art sale|Online Store|1975.0
+2025-06-18|09:25:15|Commission invoice 10001|Corporate Client|6000.0
+2025-10-10|10:50:15|Commission work completed|Art Collector|4200.0
+2025-10-15|15:17:47|Art Gift Card|HobbyLobby|50.0
+2025-10-15|15:18:58|StarBucks|Starbucks|-2.99

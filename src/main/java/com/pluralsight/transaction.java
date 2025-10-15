@@ -72,4 +72,5 @@ public class transaction {
         return date + "|" + time.format(timeFormatter) + "|" + description + "|" + vendor + "|" + amount;
     }
 
+
 }

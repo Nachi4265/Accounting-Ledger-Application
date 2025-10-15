@@ -23,8 +23,10 @@ public class Main {
     //APPLICATION START-UP
     public static void main(String[] args) {
 
-        //APPLICATION START UP!
+        //Load Ledger at start of application
+        loadLedgerFromFile();
 
+        //APPLICATION START UP!
         String appStartUp = """
                 --------LEDGER.APP--------
                 Welcome to the Ledger app!
@@ -84,12 +86,14 @@ public class Main {
 
     //MAIN MENU OPTIONS
     public static void addDeposit() {
+        System.out.println("DEPOSIT-INFO");
+        System.out.println();
 
         //Create transaction -> Add to Ledger -> Write that specific transaction to file.
 
         //variables that will hold the user input
 
-        LocalDate stringDate;
+        LocalDate date;
         LocalTime time = LocalTime.now();
         String description;
         String vendor;
@@ -97,14 +101,14 @@ public class Main {
 
 
         //Prompt for user information for transaction
-        stringDate = InputCollector.promptForDate("Enter the date(yyyy-mm-dd)");
+        date = InputCollector.promptForDate("Enter the date(YYYY-mm-dd)");
         description = InputCollector.promptForString("Enter Item Description");
         vendor = InputCollector.promptForString("Enter Vendor");
         amount = InputCollector.promptForDouble("Enter amount");
 
 
         //create the transaction using constructor.
-        transaction newTransaction = new transaction(stringDate,time,description,vendor,amount);
+        transaction newTransaction = new transaction(date,time,description,vendor,amount);
 
         //add that transaction to my ledger
         ledger.add(newTransaction);
@@ -197,15 +201,19 @@ public class Main {
 
 
         try{
+
             //Use the file writer to choose where to write transaction.csv file
             FileWriter fileWriter = new FileWriter("data/transactions.csv",true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
+
+
             //pass the new Transaction that has been converted to a string (.toString) in my writer.
             bufferedWriter.write("\n"+ newTransaction.toString());
+            bufferedWriter.newLine();
 
             //confirmation transaction was added
-            System.out.println("transaction added");
+            System.out.println("Transaction Added");
             System.out.println();
 
 
@@ -227,45 +235,9 @@ public class Main {
         System.out.println("Here are all current entire");
         System.out.println("----------------------------");
 
-        try {
-            //Made a FileReader to grab the transactions from my file!
-            //Passed it into a BufferedReader so it saves time when reading ( Not that well see it )
-            FileReader fileReader = new FileReader("data/transactions.csv");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String readFileLine;
-
-            //reads first line of file before entering while loop.
-            bufferedReader.readLine();
-
-
-            while ((readFileLine = bufferedReader.readLine()) != null) {
-
-                //Split the transaction into pieces
-                String[] transactionParts = readFileLine.split("\\|");
-
-
-                LocalDate transactionDate = LocalDate.parse(transactionParts[0]);
-                LocalTime transactionTime = LocalTime.parse(transactionParts[1]);
-                String transactionDescription = transactionParts[2];
-                String transactionVendor = transactionParts[3];
-                double transactionPrice = Double.parseDouble(transactionParts[4]);
-
-                transaction t = new transaction(transactionDate, transactionTime, transactionDescription, transactionVendor, transactionPrice);
-                ledger.add(t);
-            }
-            for (transaction t : ledger) {
-                System.out.println(t);
-            }
-
-            bufferedReader.close();
-            fileReader.close();
-
-        } catch (Exception e) {
-            System.out.println("Could not read from Ledger.");
-            e.printStackTrace();
+        for (transaction t : ledger) {
+            System.out.println(t);
         }
-
-
     }
 
     private static void displayDeposits() {
@@ -278,8 +250,7 @@ public class Main {
             }
         }
 
-    }//todo load ledger before displaying deposits /
-    // Adding deposit before loading Ledger causes java.time.format.DateTimeParseException: Text '10:57:18' could not be parsed at index 0
+    }
 
     private static void paymentsMade() {
         System.out.println("Here are all of the current payments");
@@ -341,6 +312,50 @@ public class Main {
             }
         }
     }
+
+    private static void loadLedgerFromFile(){
+        try {
+            //Made a FileReader to grab the transactions from my file!
+            //Passed it into a BufferedReader so it saves time when reading ( Not that well see it )
+            FileReader fileReader = new FileReader("data/transactions.csv");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String readFileLine;
+
+            //reads first line of file before entering while loop.
+            bufferedReader.readLine();
+
+
+            while ((readFileLine = bufferedReader.readLine()) != null) {
+
+                //If the Ledger data is empty it will skip over
+                if(readFileLine.isEmpty()){
+                    continue;
+                }
+
+                //Split the transaction into pieces
+                String[] transactionParts = readFileLine.split("\\|");
+
+
+                LocalDate transactionDate = LocalDate.parse(transactionParts[0]);
+                LocalTime transactionTime = LocalTime.parse(transactionParts[1]);
+                String transactionDescription = transactionParts[2];
+                String transactionVendor = transactionParts[3];
+                double transactionPrice = Double.parseDouble(transactionParts[4]);
+
+                transaction t = new transaction(transactionDate, transactionTime, transactionDescription, transactionVendor, transactionPrice);
+                ledger.add(t);
+            }
+            bufferedReader.close();
+            fileReader.close();
+
+        }catch (Exception e){
+            System.out.println("Could not read from Ledger.");
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 
 
