@@ -69,7 +69,7 @@ public class transaction {
     public String toString(){
         //format the time so that we are rid of extra seconds on the end.
        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return date + "|" + time.format(timeFormatter) + "|" + description + "|" + vendor + "|" + amount;
+        return String.format("%-12s|%-10s|%-30s|%-25s|%10.2f", date ,time.format(timeFormatter),  description,  vendor , amount);
     }
 
 
