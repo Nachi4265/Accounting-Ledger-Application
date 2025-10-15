@@ -43,12 +43,12 @@ File I/O (CSV)
 
 ##Future Improvements
 
-*Add ability to edit/delete transactions
-*Export reports to PDF
-*Add data validation
-*Implement budget tracking
+*Add ability to edit/delete transactions  
+*Export reports to PDF  
+*Add data validation  
+*Implement budget tracking  
 
-Author
+Author  
 Hignacio Vigen
-Date
+Date  
 10-16-2025
