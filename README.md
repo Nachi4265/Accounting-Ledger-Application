@@ -7,21 +7,20 @@ This Ledger application allows you to add a deposit , make payments and display 
 Keep track of all your spending use the accounting Ledger application! This application is written in Java and 
 runs within the JRE.
 
-##Key Features   
+Key Features   
 *Add deposit   
 *Make Payments  
 *View All or Specific transactions  
 
 Now on to the Meat and Potatoes on te progress of the application!
 
-##How to Run
-
+How to Run
 Clone or download the project
 Open in your Java IDE
 Run the Main.java file
 Follow the on-screen menu prompts
 
-##Menu Options
+Menu Options
 
 App Start-Up  
 <img width="300" height="300" alt="Screenshot 2025-10-15 194614" src="https://github.com/user-attachments/assets/b265d5e5-34f1-4fbb-a613-0be8313af04e" />
