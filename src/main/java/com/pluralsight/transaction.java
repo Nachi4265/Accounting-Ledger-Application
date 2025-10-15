@@ -14,8 +14,8 @@ public class transaction {
     double amount;
 
 
-    public transaction(String date, LocalTime time, String description, String vendor, double amount) {
-        this.date = LocalDate.parse(date);
+    public transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
+        this.date = date;
         this.time = time;
         this.description = description;
         this.vendor = vendor;
@@ -69,6 +69,7 @@ public class transaction {
     public String toString(){
         //format the time so that we are rid of extra seconds on the end.
        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return date + " | " + time.format(timeFormatter) + " | " + description + " | " + vendor + " | " + amount;
+        return date + "|" + time.format(timeFormatter) + "|" + description + "|" + vendor + "|" + amount;
     }
+
 }

@@ -11,7 +11,7 @@ public class InputCollector {
     public static String promptForString(String prompt){
         System.out.print(prompt + ": ");
         String input = scanner.nextLine().trim();
-        System.out.println();  // Add this for spacing
+        System.out.println();
         return input;
     }
 
@@ -72,7 +72,7 @@ public class InputCollector {
     }
 
     public static LocalDate promptForDate(String prompt){
-        while (true){
+        while(true){
             try{
                 System.out.print(prompt + ": ");
                 String stringDate = scanner.nextLine();

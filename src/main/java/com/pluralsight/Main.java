@@ -8,8 +8,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
+
+
 public class Main {
     public static ArrayList<transaction> ledger = new ArrayList<>();
+
+    //todo Polish code and add try/catch where needed.
+    //todo add comments to code for presentation
+    //todo add visual appeal for user
+    //todo Make two different displays for terminal display and File display
+    //todo do not rewrite data to Leader , Refresh ledger and add updated data
+
 
     //APPLICATION START-UP
     public static void main(String[] args) {
@@ -73,8 +82,6 @@ public class Main {
 
 
 
-
-
     //MAIN MENU OPTIONS
     public static void addDeposit() {
 
@@ -82,7 +89,7 @@ public class Main {
 
         //variables that will hold the user input
 
-        String stringDate;
+        LocalDate stringDate;
         LocalTime time = LocalTime.now();
         String description;
         String vendor;
@@ -90,7 +97,7 @@ public class Main {
 
 
         //Prompt for user information for transaction
-        stringDate = InputCollector.promptForString("Enter the date(YYYY-mm-dd)");
+        stringDate = InputCollector.promptForDate("Enter the date(yyyy-mm-dd)");
         description = InputCollector.promptForString("Enter Item Description");
         vendor = InputCollector.promptForString("Enter Vendor");
         amount = InputCollector.promptForDouble("Enter amount");
@@ -112,7 +119,7 @@ public class Main {
         System.out.println("PAYMENT-INFO");
         System.out.println();
 
-        String stringDate;
+        LocalDate date;
         LocalTime time = LocalTime.now();
         String description;
         String vendor;
@@ -120,21 +127,21 @@ public class Main {
 
 
         //Prompt for user information for transaction
-        stringDate = InputCollector.promptForString("Enter the date(YYYY-mm-dd)");
+        date = InputCollector.promptForDate("Enter the date(YYYY-mm-dd)");
         description = InputCollector.promptForString("Enter Item Description");
         vendor = InputCollector.promptForString("Enter Vendor");
         amount = InputCollector.promptForDouble("Enter amount");
 
 
         //create the transaction using constructor.
-        transaction newTransaction = new transaction(stringDate,time,description,vendor,amount);
+        transaction newTransaction = new transaction(date,time,description,vendor,amount);
 
         //add that transaction to my ledger
         ledger.add(newTransaction);
 
         //add our converted
         addTransactionToLedger( newTransaction);
-    }//todo same as above but its payment
+    }
 
     private static void ledgerMenu() {
 
@@ -232,11 +239,12 @@ public class Main {
 
 
             while ((readFileLine = bufferedReader.readLine()) != null) {
-                //We need to split the transaction into pieces
+
+                //Split the transaction into pieces
                 String[] transactionParts = readFileLine.split("\\|");
 
 
-                String transactionDate = transactionParts[0];
+                LocalDate transactionDate = LocalDate.parse(transactionParts[0]);
                 LocalTime transactionTime = LocalTime.parse(transactionParts[1]);
                 String transactionDescription = transactionParts[2];
                 String transactionVendor = transactionParts[3];
@@ -254,7 +262,7 @@ public class Main {
 
         } catch (Exception e) {
             System.out.println("Could not read from Ledger.");
-//            e.printStackTrace();
+            e.printStackTrace();
         }
 
 
@@ -270,7 +278,8 @@ public class Main {
             }
         }
 
-    }//todo load ledger before displaying deposits
+    }//todo load ledger before displaying deposits /
+    // Adding deposit before loading Ledger causes java.time.format.DateTimeParseException: Text '10:57:18' could not be parsed at index 0
 
     private static void paymentsMade() {
         System.out.println("Here are all of the current payments");
@@ -381,7 +390,10 @@ public class Main {
 
     private static void previousYear() {
         System.out.println("Reports from last year");
+        //Variable for the current date
         LocalDate today = LocalDate.now();
+
+        //Year Object
         Year currentYear = Year.from(today);
         Year previousYear = currentYear.minusYears(1);
 
@@ -405,7 +417,5 @@ public class Main {
                 System.out.println(t);
             }
         }
-    }//add ignore case
-
-
+    }//todo add ignore case
 }
