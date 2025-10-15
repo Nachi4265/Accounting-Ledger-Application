@@ -24,17 +24,17 @@ Follow the on-screen menu prompts
 ##Menu Options
 
 App Start-Up  
-<img width="510" height="410" alt="Screenshot 2025-10-15 194614" src="https://github.com/user-attachments/assets/b265d5e5-34f1-4fbb-a613-0be8313af04e" />
+<img width="300" height="300" alt="Screenshot 2025-10-15 194614" src="https://github.com/user-attachments/assets/b265d5e5-34f1-4fbb-a613-0be8313af04e" />
 
 Home Menu   
-<img width="408" height="292" alt="Screenshot 2025-10-15 194636" src="https://github.com/user-attachments/assets/13f76381-1f5d-4eaa-b1c2-e680b1bb1a34" />
+<img width="300" height="300" alt="Screenshot 2025-10-15 194636" src="https://github.com/user-attachments/assets/13f76381-1f5d-4eaa-b1c2-e680b1bb1a34" />
 
 Ledger Menu  
-<img width="361" height="316" alt="Screenshot 2025-10-15 194644" src="https://github.com/user-attachments/assets/17525b97-8e9d-4bb1-b7c0-102ace20dae3" />
+<img width="300" height="300" alt="Screenshot 2025-10-15 194644" src="https://github.com/user-attachments/assets/17525b97-8e9d-4bb1-b7c0-102ace20dae3" />
 
 
 Reports Menu  
-<img width="377" height="379" alt="Screenshot 2025-10-15 194653" src="https://github.com/user-attachments/assets/c79f58de-31db-4980-820a-712ed8a7d786" />
+<img width="300" height="300" alt="Screenshot 2025-10-15 194653" src="https://github.com/user-attachments/assets/c79f58de-31db-4980-820a-712ed8a7d786" />
 
 Technologies Used
 
