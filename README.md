@@ -36,7 +36,7 @@ Before the Fix
 <img width="200" height="200" alt="Screenshot 2025-10-15 192529" src="https://github.com/user-attachments/assets/74de3456-a4cf-43c8-b6f4-85cbac977eeb" />
 
 After the fix
-<img width="200" height="200" alt="UI design" src="https://github.com/user-attachments/assets/cc867cb1-c62a-4348-98df-95900e178374" />
+<img width="200" height="600" alt="UI design" src="https://github.com/user-attachments/assets/cc867cb1-c62a-4348-98df-95900e178374" />
 <img width="200" height="200" alt="UI Design Menu" src="https://github.com/user-attachments/assets/491191ed-340e-411a-8536-a406214d0137" />
 
 
