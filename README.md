@@ -48,7 +48,5 @@ File I/O (CSV)
 *Add data validation  
 *Implement budget tracking  
 
-Author  
-Hignacio Vigen  
-Date    
-10-16-2025
+Author: Hignacio Vigen   
+Date: 10-16-2025  
