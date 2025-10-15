@@ -14,35 +14,50 @@ runs within the JRE.
 
 Now on to the Meat and Potatoes on te progress of the application!
 
-## Project Stage ( The Skeleton (give it structure) )
-In the Beginning stage of the project the 1st thing I wanted to have working was the user interface (UI) 
-I loved woking with Html and Css so I figured I'd get an esay win first and work on the hard things later 
-( it also makes it easier (in my opinion) to test the application!)
+##How to Run
 
-<img width="200" height="200" alt="Screenshot 2025-10-11 180347" src="https://github.com/user-attachments/assets/8a2c0cc0-9116-4f2f-967e-7b6165d6beb7" />
-<img width="200" height="200" alt="Screenshot 2025-10-11 180424" src="https://github.com/user-attachments/assets/f732deff-805f-4775-8cb9-027b001ad2bd" />
-<img width="200" height="200" alt="Screenshot 2025-10-11 180438" src="https://github.com/user-attachments/assets/35307916-8a2b-48dd-8e51-5e12a6c78fab" />
-<img width="200" height="200" alt="Screenshot 2025-10-11 180449" src="https://github.com/user-attachments/assets/e27af71c-b88b-47b8-a95d-ce7a65b8e20a" />
+Clone or download the project
+Open in your Java IDE
+Run the Main.java file
+Follow the on-screen menu prompts
 
-## Project Stage ( The Organs! (They help the body function) )
-The functionality stage is where the majority of my time was spent! 
-Here is where I added all of the methods for my menu options!
-Here are Some of the problems I ran into and my solution! 
+##Menu Options
 
-### User Interface 
-This was more of a cosmetic fix rather than a functional one. I believe it is just as important as a functional fix 
+Home Menu
+D - Add Deposit
+P - Make Payment
+L - View Ledger
+X - Exit
 
-Before the Fix 
-<img width="200" height="200" alt="Screenshot 2025-10-15 192529" src="https://github.com/user-attachments/assets/74de3456-a4cf-43c8-b6f4-85cbac977eeb" />
+Ledger Menu
+A - All entries
+D - Deposits only
+P - Payments only
+R - Reports
+H - Return to Home
 
-After the fix
-<img width="200" height="600" alt="UI design" src="https://github.com/user-attachments/assets/cc867cb1-c62a-4348-98df-95900e178374" />
-<img width="200" height="200" alt="UI Design Menu" src="https://github.com/user-attachments/assets/491191ed-340e-411a-8536-a406214d0137" />
+Reports Menu
+1 - Month To Date
+2 - Previous Month
+3 - Year to Date
+4 - Previous Year
+5 - Search by Vendor
+0 - Back to Ledger
+H - Return to Home
 
+Technologies Used
 
+Java
+File I/O (CSV)
 
+##Future Improvements
 
+*Add ability to edit/delete transactions
+*Export reports to PDF
+*Add data validation
+*Implement budget tracking
 
-## Project Stage ( The Skin! (Make things easy to look at!) )
-
-
+Author
+Hignacio Vigen
+Date
+10-16-2025
