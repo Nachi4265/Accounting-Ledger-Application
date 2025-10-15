@@ -49,6 +49,6 @@ File I/O (CSV)
 *Implement budget tracking  
 
 Author  
-Hignacio Vigen
-Date  
+Hignacio Vigen  
+Date    
 10-16-2025
