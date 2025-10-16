@@ -81,6 +81,7 @@ public class Main {
 
 
 
+
     //MAIN MENU OPTIONS
     public static void addDeposit() {
         System.out.println("DEPOSIT-INFO");
@@ -128,7 +129,7 @@ public class Main {
         date = InputCollector.promptForDate("Enter the date(YYYY-mm-dd)");
         description = InputCollector.promptForString("Enter Item Description");
         vendor = InputCollector.promptForString("Enter Vendor");
-        amount = InputCollector.promptForDouble("Enter amount");
+        amount = InputCollector.promptForDouble("Enter Amount");
 
 
         //create the transaction using constructor.
@@ -191,7 +192,6 @@ public class Main {
         }
 
     }
-
     //Method we are using to add our new transactions to our Ledger
     //Passing arguments to our Method to use
     private static void addTransactionToLedger(Transaction newTransaction){
@@ -210,7 +210,7 @@ public class Main {
 
 
             //confirmation transaction was added
-            System.out.println("Transaction Added");
+            System.out.println("--Transaction Added Successfully!--");
             System.out.println();
 
             //Always close filewriter to prevent resource Leaks
@@ -219,7 +219,7 @@ public class Main {
 
         }
         catch(Exception e){
-            System.out.println("Could not add transaction");
+            System.out.println("--Transaction Failed!--");
 //            e.printStackTrace();
         }
     }
@@ -329,7 +329,7 @@ public class Main {
             //reads first line of file before entering while loop.
             bufferedReader.readLine();
 
-
+            //Loop that reads each line of our file until the end of the file.
             while ((readFileLine = bufferedReader.readLine()) != null) {
 
                 //If the Ledger data is empty it will skip over
@@ -337,7 +337,7 @@ public class Main {
                     continue;
                 }
 
-                //Split the transaction into pieces
+                //Split the transaction into parts by delimiter
                 String[] transactionParts = readFileLine.split("\\|");
 
 
@@ -347,6 +347,7 @@ public class Main {
                 String transactionVendor = transactionParts[3];
                 double transactionPrice = Double.parseDouble(transactionParts[4]);
 
+                //Create a Transaction Object and add it to the ledger (Made form parsed data)
                 Transaction t = new Transaction(transactionDate, transactionTime, transactionDescription, transactionVendor, transactionPrice);
                 ledger.add(t);
             }
@@ -369,9 +370,15 @@ public class Main {
     //REPORTS MENU
     private static void monthToDate() {
         System.out.println("Reports from the past month");
+        System.out.println("---------------------------");
+
+        //for loop that iterates through ledger
         for (Transaction t : ledger) {
+            //LocalDate Object gets transaction date and today's date
             LocalDate transactionDate = t.getDate();
             LocalDate todayDate = LocalDate.now();
+
+            //Checks if the transaction is from the current year and month.
             if (transactionDate.getYear() == todayDate.getYear() && transactionDate.getMonth() == todayDate.getMonth()) {
                 System.out.print(t);
             }
@@ -385,13 +392,18 @@ public class Main {
         //Variable LocalDate that will get the current date
         LocalDate today = LocalDate.now();
 
-        //
+        //YearMonth class extracts a Year and a Month from today
+        // .from Method extracts year and month from a date.
         YearMonth currentMonth = YearMonth.from(today);
+
+        //.minusMonth() subtracts the specified amount of months
         YearMonth previousMonth = currentMonth.minusMonths(1);
 
         for(Transaction t :ledger){
+            //transactionMonth is getting the year and month from a transaction's date
             YearMonth transactionMonth = YearMonth.from(t.getDate());
 
+            //If statement that checks if the transactionMonth is the same as the previous month
             if(transactionMonth.equals(previousMonth)){
                 System.out.println(t);
             }
@@ -400,6 +412,7 @@ public class Main {
 
     private static void yearToDate() {
         System.out.println("Reports from the past year");
+        System.out.println("--------------------------");
         for (Transaction t : ledger) {
 
             LocalDate transactionDate = t.getDate();
@@ -416,8 +429,10 @@ public class Main {
         //Variable for the current date
         LocalDate today = LocalDate.now();
 
-        //Year Object
+        //Extract current year from today's date
         Year currentYear = Year.from(today);
+
+        //Calculate the previous year by subtracting one year from current year
         Year previousYear = currentYear.minusYears(1);
 
         for(Transaction t :ledger){
@@ -434,11 +449,19 @@ public class Main {
         //Ask for which vendor they want to search for.
        String vendorSearchedFor = InputCollector.promptForString("Enter vendor name");
 
-        //Look through my Ledger
+        boolean vendorFound = false;
+
+        //Iterate through my Ledger
         for (Transaction t : ledger){
             if(Objects.equals(t.getVendor(), vendorSearchedFor)){
                 System.out.println(t);
+                vendorFound = true;
             }
         }
-    }//todo add ignore case
+
+        if (!vendorFound){
+            System.out.println(vendorSearchedFor +" could not be found!");
+            System.out.println("Returning to Reports menu");
+        }
+    }
 }

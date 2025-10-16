@@ -100,7 +100,7 @@ public class InputCollector {
 
             }catch(Exception e){
                 scanner.nextLine();
-                System.out.print("please enter a number with decimal");
+                System.out.print("please enter a number with decimal ");
             }
         }while (!isDouble);
 
