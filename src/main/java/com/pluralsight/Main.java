@@ -5,19 +5,13 @@ import java.time.LocalTime;
 import java.time.Year;
 import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 
 
 
 public class Main {
-    public static ArrayList<transaction> ledger = new ArrayList<>();
+    public static ArrayList<Transaction> ledger = new ArrayList<>();
 
-    //todo Polish code and add try/catch where needed.
-    //todo add comments to code for presentation
-    //todo add visual appeal for user
-    //todo Make two different displays for terminal display and File display
-    //todo do not rewrite data to Leader , Refresh ledger and add updated data
 
 
     //APPLICATION START-UP
@@ -36,6 +30,8 @@ public class Main {
 
         String startCommand;
         startCommand = InputCollector.promptForString("Enter 'Start' to load Application");
+
+        //If the User Input equals some form of start the application will load Home Menu
         if (startCommand.equalsIgnoreCase("start")) {
             homeMenu();
         }
@@ -57,6 +53,7 @@ public class Main {
                  ----------------------
                 """;
 
+        //Using a while statement to infinitely loop until we hit a break "Option is selected"
         while (true) {
             System.out.println(mainMenu);
 
@@ -91,8 +88,7 @@ public class Main {
 
         //Create transaction -> Add to Ledger -> Write that specific transaction to file.
 
-        //variables that will hold the user input
-
+        //variables that will hold the transaction information for later use
         LocalDate date;
         LocalTime time = LocalTime.now();
         String description;
@@ -100,7 +96,7 @@ public class Main {
         double amount;
 
 
-        //Prompt for user information for transaction
+        //Prompting for user information for transaction
         date = InputCollector.promptForDate("Enter the date(YYYY-mm-dd)");
         description = InputCollector.promptForString("Enter Item Description");
         vendor = InputCollector.promptForString("Enter Vendor");
@@ -108,15 +104,13 @@ public class Main {
 
 
         //create the transaction using constructor.
-        transaction newTransaction = new transaction(date,time,description,vendor,amount);
+        Transaction newTransaction = new Transaction(date,time,description,vendor,amount);
 
         //add that transaction to my ledger
         ledger.add(newTransaction);
 
-        //add our converted
-        addTransactionToLedger( newTransaction);
-
-
+        //Using a Method to the new transaction to ledger.
+        addTransactionToLedger(newTransaction);
     }
 
     private static void addPayment() {
@@ -138,12 +132,11 @@ public class Main {
 
 
         //create the transaction using constructor.
-        transaction newTransaction = new transaction(date,time,description,vendor,amount);
+        Transaction newTransaction = new Transaction(date,time,description,vendor,amount);
 
         //add that transaction to my ledger
         ledger.add(newTransaction);
 
-        //add our converted
         addTransactionToLedger( newTransaction);
     }
 
@@ -180,6 +173,8 @@ public class Main {
                     paymentsMade();
                     break;
                 case 'R':
+                    //'R' Sends you to the Reports menu which returns a boolean true/false
+                    //If true then we will head back to Main Menu if False then we stay in Ledger Menu
                     boolean goToMain = reportsMenu();
                     if (goToMain) {
                         return;
@@ -197,28 +192,31 @@ public class Main {
 
     }
 
-    private static void addTransactionToLedger(transaction newTransaction){
+    //Method we are using to add our new transactions to our Ledger
+    //Passing arguments to our Method to use
+    private static void addTransactionToLedger(Transaction newTransaction){
 
 
         try{
-
-            //Use the file writer to choose where to write transaction.csv file
+            //Create a FileWriter to write to transactions.csv in append mode (Using a buffered writer for efficient writing)
             FileWriter fileWriter = new FileWriter("data/transactions.csv",true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
 
 
-            //pass the new Transaction that has been converted to a string (.toString) in my writer.
+            //write the new Transaction that has been converted to a string (.toString) in my writer.
             bufferedWriter.write("\n"+ newTransaction.toString());
-            bufferedWriter.newLine();
+
+
 
             //confirmation transaction was added
             System.out.println("Transaction Added");
             System.out.println();
 
-
+            //Always close filewriter to prevent resource Leaks
             bufferedWriter.close();
             fileWriter.close();
+
         }
         catch(Exception e){
             System.out.println("Could not add transaction");
@@ -232,10 +230,13 @@ public class Main {
 
     //LEDGER MENU
     private static void displayAllEntries() {
-        System.out.println("Here are all current entire");
+        System.out.println("Here are all current entries");
         System.out.println("----------------------------");
 
-        for (transaction t : ledger) {
+        //Iterates through our ledger and displays all transactions
+        // t - is our loop varaible that holds each transaction
+        // ledger - is the collection that we are iterating through
+        for (Transaction t : ledger) {
             System.out.println(t);
         }
     }
@@ -243,8 +244,9 @@ public class Main {
     private static void displayDeposits() {
         System.out.println("Here are all of the current deposits");
         System.out.println("------------------------------------");
-        //todo display ONLY deposits
-        for (transaction t : ledger) {
+
+        for (Transaction t : ledger) {
+            //if the amount of our transaction is greater than 0 , display it
             if (t.getAmount() > 0) {
                 System.out.println(t);
             }
@@ -254,8 +256,9 @@ public class Main {
 
     private static void paymentsMade() {
         System.out.println("Here are all of the current payments");
-        //todo display ONlY payments
-        for (transaction t : ledger) {
+
+        //if the amount of our transaction is less than 0 , display it
+        for (Transaction t : ledger) {
             if (t.getAmount() < 0) {
                 System.out.println(t);
             }
@@ -313,12 +316,14 @@ public class Main {
         }
     }
 
+    //todo finish adding comments from here down
     private static void loadLedgerFromFile(){
         try {
-            //Made a FileReader to grab the transactions from my file!
-            //Passed it into a BufferedReader so it saves time when reading ( Not that well see it )
+            //Create a FileReader to read the transactions from my file!
             FileReader fileReader = new FileReader("data/transactions.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            //String variable for later use
             String readFileLine;
 
             //reads first line of file before entering while loop.
@@ -342,7 +347,7 @@ public class Main {
                 String transactionVendor = transactionParts[3];
                 double transactionPrice = Double.parseDouble(transactionParts[4]);
 
-                transaction t = new transaction(transactionDate, transactionTime, transactionDescription, transactionVendor, transactionPrice);
+                Transaction t = new Transaction(transactionDate, transactionTime, transactionDescription, transactionVendor, transactionPrice);
                 ledger.add(t);
             }
             bufferedReader.close();
@@ -350,7 +355,7 @@ public class Main {
 
         }catch (Exception e){
             System.out.println("Could not read from Ledger.");
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
 
@@ -364,7 +369,7 @@ public class Main {
     //REPORTS MENU
     private static void monthToDate() {
         System.out.println("Reports from the past month");
-        for (transaction t : ledger) {
+        for (Transaction t : ledger) {
             LocalDate transactionDate = t.getDate();
             LocalDate todayDate = LocalDate.now();
             if (transactionDate.getYear() == todayDate.getYear() && transactionDate.getMonth() == todayDate.getMonth()) {
@@ -377,11 +382,14 @@ public class Main {
     private static void previousMonth() {
         System.out.println("Reports from Previous Month");
 
+        //Variable LocalDate that will get the current date
         LocalDate today = LocalDate.now();
+
+        //
         YearMonth currentMonth = YearMonth.from(today);
         YearMonth previousMonth = currentMonth.minusMonths(1);
 
-        for(transaction t :ledger){
+        for(Transaction t :ledger){
             YearMonth transactionMonth = YearMonth.from(t.getDate());
 
             if(transactionMonth.equals(previousMonth)){
@@ -392,7 +400,7 @@ public class Main {
 
     private static void yearToDate() {
         System.out.println("Reports from the past year");
-        for (transaction t : ledger) {
+        for (Transaction t : ledger) {
 
             LocalDate transactionDate = t.getDate();
             LocalDate todayDate = LocalDate.now();
@@ -412,7 +420,7 @@ public class Main {
         Year currentYear = Year.from(today);
         Year previousYear = currentYear.minusYears(1);
 
-        for(transaction t :ledger){
+        for(Transaction t :ledger){
             Year transactionYear = Year.from(t.getDate());
             if(transactionYear.equals(previousYear)){
                 System.out.println(t);
@@ -427,7 +435,7 @@ public class Main {
        String vendorSearchedFor = InputCollector.promptForString("Enter vendor name");
 
         //Look through my Ledger
-        for (transaction t : ledger){
+        for (Transaction t : ledger){
             if(Objects.equals(t.getVendor(), vendorSearchedFor)){
                 System.out.println(t);
             }
