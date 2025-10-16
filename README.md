@@ -14,11 +14,11 @@ Key Features
 
 Now on to the Meat and Potatoes on te progress of the application!
 
-How to Run
-Clone or download the project
-Open in your Java IDE
-Run the Main.java file
-Follow the on-screen menu prompts
+How to Run  
+Clone or download the project  
+Open in your Java IDE  
+Run the Main.java file  
+Follow the on-screen menu prompts  
 
 Menu Options
 
