@@ -44,8 +44,7 @@ File I/O (CSV)
 
 *Add ability to edit/delete transactions  
 *Export reports to PDF  
-*Add data validation  
-*Implement budget tracking  
+*Auto Transactions   
 
 Author: Hignacio Vigen   
 Date: 10-16-2025  
